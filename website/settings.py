@@ -1,5 +1,4 @@
 # Import dj-database-url at the beginning of the file.
-import dj_database_url
 """
 Django settings for website project.
 
@@ -79,10 +78,10 @@ WSGI_APPLICATION = 'website.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-   'default': dj_database_url.config(       
-    # Replace this value with your local database's connection string.        
-    default='postgresql://postgres:postgres@localhost:5432/mysite',       
-    conn_max_age=600    )
+   "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": "db.sqlite3",
+    }
 }
 
 
@@ -135,9 +134,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 #     ]
 # }
 
-REST_FRAMEWORK = {
-    'DEFAULT_RENDERER_CLASSES': (
-        'rest_framework.renderers.JSONRenderer',
-    ),
-    'DEFAULT_RESPONSE_CLASS': 'utils.helper.response_data',
-}
+# REST_FRAMEWORK = {
+#     'DEFAULT_RENDERER_CLASSES': (
+#         'rest_framework.renderers.JSONRenderer',
+#     ),
+#     'DEFAULT_RESPONSE_CLASS': 'utils.helper.response_data',
+# }
