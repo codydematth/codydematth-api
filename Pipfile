@@ -17,8 +17,8 @@ dj-database-url = "*"
 psycopg2-binary = "*"
 gunicorn = "*"
 uvicorn = "*"
-django-cors-headers = "*"
 whitenoise = "*"
+django-cors-headers = "*"
 
 [dev-packages]
 
