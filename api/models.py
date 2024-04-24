@@ -18,7 +18,7 @@ class Post(models.Model):
     date_created = models.DateTimeField(auto_now_add=True)
     # email = models.EmailField(max_length=255, null=True, blank=True)
     image = models.ImageField(upload_to='post_images/', null=True, blank=True)
-    post_tags = models.ManyToManyField(Tag, null=True)
+    post_tags = models.ManyToManyField(Tag, blank=True)
 
     def __str__(self):
         return str(self.post_title)
