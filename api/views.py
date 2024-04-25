@@ -4,6 +4,7 @@ from rest_framework import status
 from .models import Post,Tag
 from .serializers import PostSerializer,TagSerializer
 from utils.helper import response_data
+import cloudinary.uploader
 
 
 
@@ -34,6 +35,11 @@ def create_post(request):
         post_tags_data = post_data.pop('post_tags', [])  # Remove post_tags from data and set to empty list if not provided
         serializer = PostSerializer(data=post_data)
         if serializer.is_valid():
+            # Upload image to Cloudinary
+            image = request.data.get('image')
+            if image:
+                result = cloudinary.uploader.upload(image)
+                serializer.validated_data['image'] = result['secure_url']
             post = serializer.save()
              # Create or get tags and associate them with the post
             for tag_data in post_tags_data:
@@ -86,6 +92,11 @@ def update_post(request, pk):
         serializer = PostSerializer(post, data=post_data)
         serializer = PostSerializer(post, data=request.data)
         if serializer.is_valid():
+            # Upload image to Cloudinary if new image is provided
+            new_image = request.data.get('image')
+            if new_image:
+                result = cloudinary.uploader.upload(new_image)
+                serializer.validated_data['image'] = result['secure_url']
             post =  serializer.save()
 
               # Clear existing tags and associate new ones with the post
