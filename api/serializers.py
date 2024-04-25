@@ -27,5 +27,5 @@ class PostSerializer(serializers.ModelSerializer):
         representation = super().to_representation(instance)
         if representation.get('image'):
             # Replace the image URL with the Cloudinary URL
-            representation['image'] = representation['image'].replace('/media/https%3A', 'https:')
+            representation['image'] = representation['image'].replace('/media/https%3A', 'https:/')
         return representation
