@@ -19,6 +19,7 @@ gunicorn = "*"
 uvicorn = "*"
 whitenoise = "*"
 django-cors-headers = "*"
+cloudinary = "*"
 
 [dev-packages]
 

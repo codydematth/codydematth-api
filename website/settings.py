@@ -14,7 +14,9 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 from decouple import config
 import os
-
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -24,6 +26,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = config('SECRET_KEY')
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=True, cast=bool)
@@ -156,3 +159,12 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     # Add more origins if needed
 ]
+
+# Configure Cloudinary API key
+cloudinary.config(
+    cloud_name= config('cloud_name'),
+    api_key= config('api_key'),
+    api_secret= config('api_secret')
+)
+
+# CLOUDINARY_URL = config('CLOUDINARY_URL')

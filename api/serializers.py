@@ -21,3 +21,11 @@ class PostSerializer(serializers.ModelSerializer):
 
     def get_post_tags(self, obj):
             return [tag.name for tag in obj.post_tags.all()]
+    
+
+    def to_representation(self, instance):
+        representation = super().to_representation(instance)
+        if representation.get('image'):
+            # Replace the image URL with the Cloudinary URL
+            representation['image'] = representation['image'].replace('/media/https%3A', 'https:')
+        return representation
